@@ -6,7 +6,7 @@
 /*   By: mwen <mwen@student.42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 00:31:56 by mwen              #+#    #+#             */
-/*   Updated: 2022/02/14 13:08:11 by mwen             ###   ########.fr       */
+/*   Updated: 2022/03/02 22:39:01 by mwen             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ Point::Point(const float x, const float y) : x(Fixed(x)), y(Fixed(y)) {}
 Point&	Point::operator= (const Point &obj)
 {
 	if (this != &obj)
-		*this = Point(obj.getX().toFloat(), obj.getX().toFloat());
+	{
+		const_cast <Fixed&> (this->x) = obj.x;
+		const_cast <Fixed&> (this->y) = obj.y;
+	}
 	return (*this);
 }
 
